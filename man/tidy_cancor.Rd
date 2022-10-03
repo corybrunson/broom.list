@@ -64,6 +64,7 @@ implemented as functions of the form \verb{tidy_<function>()} or
 If no appropriate tidying method is found, they throw an error.
 }
 \examples{
+
 # savings data
 class(LifeCycleSavings)
 pop <- LifeCycleSavings[, 2:3]
@@ -78,11 +79,18 @@ tidy(savings_cca, matrix = "ycoef")
 # return the canonical coefficients, with summary statistics
 tidy(savings_cca, matrix = "cor")
 
+\dontshow{if (rlang::is_installed("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+library(ggplot2)
+
 # scree plot
-ggplot(tidy(savings_cca, matrix = "cor"), aes(x = CC, y = percent)) +
+savings_cca \%>\%
+  tidy(matrix = "cor") \%>\%
+  ggplot(aes(x = CC, y = percent)) +
   theme_bw() +
   geom_col() +
   labs(x = "Canonical dimension", y = "Percent of variance")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[generics:tidy]{generics::tidy()}}, \code{\link[stats:cancor]{stats::cancor()}}

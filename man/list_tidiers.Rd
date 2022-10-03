@@ -6,9 +6,14 @@
 \alias{glance.list}
 \title{Tidying methods for lists / returned values that are not S3 objects}
 \usage{
-tidy.list(x, ...)
+\method{tidy}{list}(x, ...)
 
-glance.list(x, ...)
+\method{glance}{list}(x, ...)
+}
+\arguments{
+\item{x}{A list, potentially representing an object that can be tidied.}
+
+\item{...}{Additionally, arguments passed to the tidying function.}
 }
 \description{
 \strong{broom.list} complements \strong{broom} by tidying a number of

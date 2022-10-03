@@ -1,2 +1,6 @@
+# Project organization
 ^.*\.Rproj$
 ^\.Rproj\.user$
+
+# Package organization
+man-roxygen

@@ -58,9 +58,37 @@
 #'   \item{`cumulative`}{Cumulative fraction of variation along principal
 #'                       coordinates up to this one
 #'                       (a numeric value between 0 and 1).}
-#'
-
-#' @example inst/examples/ex-list-cmdscale-tidiers-cities.r
+#' 
+#' @examples
+#' 
+#' # 'dist' object (matrix of road distances) of large American cities
+#' class(UScitiesD)
+#' print(UScitiesD)
+#' 
+#' # use multidimensional scaling to infer artificial planar coordinates
+#' UScitiesD %>%
+#'   cmdscale(k = 3L, eig = TRUE, x.ret = TRUE) ->
+#'   usa_mds
+#' 
+#' # glance at the model
+#' glance(usa_mds)
+#' # return the tidied coordinates
+#' tidy(usa_mds)
+#' # return the upper triangle of the doubly-centered distance matrix in tidy form
+#' tidy(usa_mds, matrix = "x")
+#' # return the eigenvalues for the principal coordinates, with summary statistics
+#' tidy(usa_mds, matrix = "eig")
+#' 
+#' @examplesIf rlang::is_installed("ggplot2")
+#' 
+#' library(ggplot2)
+#' 
+#' # reorient to conventional compass
+#' tidy(usa_mds) %>%
+#'   ggplot(aes(x = -PCo1, y = -PCo2)) +
+#'   geom_text(aes(label = point), size = 3) +
+#'   ggtitle("MDS biplot of distances between U.S. cities")
+#' 
 #' @family list tidiers
 #' @seealso [generics::tidy()], [stats::cmdscale()]
 tidy_cmdscale <- function(x, matrix = "points", ...) {

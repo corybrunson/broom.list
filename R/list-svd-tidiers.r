@@ -10,6 +10,7 @@
 #'   - `"v"`: returns information about the right singular vectors.
 #'
 #'   - `"d"`: returns information about the basis vectors and singular values.
+#' @template param-unused-dots
 #'
 #' @return A [tibble::tibble] with columns depending on the component of the SVD
 #'   being tidied.
@@ -52,9 +53,11 @@
 #'
 #' tidy_v <- tidy(s, matrix = "v")
 #' tidy_v
-#'
-#' library(ggplot2)
+#' 
+#' @examplesIf rlang::is_installed("ggplot2")
+#' 
 #' library(dplyr)
+#' library(ggplot2)
 #'
 #' ggplot(tidy_d, aes(SV, percent)) +
 #'   geom_point() +
@@ -65,7 +68,7 @@
 #'   ggplot(aes(class, value)) +
 #'   geom_boxplot() +
 #'   facet_wrap(~SV, scale = "free_y")
-#'  
+#' 
 #' @seealso [generics::tidy()], [base::svd()]
 #' @aliases svd_tidiers
 #' @family svd tidiers

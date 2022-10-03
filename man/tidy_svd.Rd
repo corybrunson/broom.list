@@ -17,6 +17,11 @@ tidied.
 \item \code{"v"}: returns information about the right singular vectors.
 \item \code{"d"}: returns information about the basis vectors and singular values.
 }}
+
+\item{...}{Additional arguments. Not used. Needed to match generic
+signature only. \strong{Cautionary note:} Misspelled arguments will be
+absorbed in \code{...}, where they will be ignored. If the misspelled
+argument has a default value, the default value will be used.}
 }
 \value{
 A \link[tibble:tibble]{tibble::tibble} with columns depending on the component of the SVD
@@ -72,9 +77,11 @@ tidy_d
 
 tidy_v <- tidy(s, matrix = "v")
 tidy_v
+\dontshow{\}) # examplesIf}
+\dontshow{if (rlang::is_installed("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-library(ggplot2)
 library(dplyr)
+library(ggplot2)
 
 ggplot(tidy_d, aes(SV, percent)) +
   geom_point() +
@@ -85,7 +92,6 @@ tidy_u \%>\%
   ggplot(aes(class, value)) +
   geom_boxplot() +
   facet_wrap(~SV, scale = "free_y")
- 
 \dontshow{\}) # examplesIf}
 }
 \seealso{

@@ -14,7 +14,10 @@
 #' `glance_<function>()` and are not exported (but they are documented!).
 #'
 #' If no appropriate tidying method is found, throws an error.
-
+#' 
+#' @param x A list, potentially representing an object that can be tidied.
+#' @param ... Additionally, arguments passed to the tidying function.
+#' 
 #' @name list_tidiers
 #' @family list tidiers
 #' @seealso [generics::tidy()] [generics::glance()]

@@ -41,8 +41,34 @@
 #'                       dimensions up to this one
 #'                       (a numeric value between 0 and 1).}
 #' 
-
-#' @example inst/examples/ex-list-cancor-tidiers-savings.r
+#' @examples
+#' 
+#' # savings data
+#' class(LifeCycleSavings)
+#' pop <- LifeCycleSavings[, 2:3]
+#' oec <- LifeCycleSavings[, -(2:3)]
+#' # canonical correlation analysis
+#' savings_cca <- cancor(pop, oec)
+#' 
+#' # return the tidied canonical coefficients for the left variables
+#' tidy(savings_cca)
+#' # return the tidied canonical coefficients for the right variables
+#' tidy(savings_cca, matrix = "ycoef")
+#' # return the canonical coefficients, with summary statistics
+#' tidy(savings_cca, matrix = "cor")
+#' 
+#' @examplesIf rlang::is_installed("ggplot2")
+#' 
+#' library(ggplot2)
+#' 
+#' # scree plot
+#' savings_cca %>%
+#'   tidy(matrix = "cor") %>%
+#'   ggplot(aes(x = CC, y = percent)) +
+#'   theme_bw() +
+#'   geom_col() +
+#'   labs(x = "Canonical dimension", y = "Percent of variance")
+#' 
 #' @family list tidiers
 #' @seealso [generics::tidy()], [stats::cancor()]
 tidy_cancor <- function(x, matrix = "cor", ...) {

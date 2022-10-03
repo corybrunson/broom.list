@@ -78,6 +78,7 @@ will be \code{NULL} if their parameters are not set to \code{TRUE}). These tidie
 on this list structure to organize the model output into a tibble.
 }
 \examples{
+
 # 'dist' object (matrix of road distances) of large American cities
 class(UScitiesD)
 print(UScitiesD)
@@ -95,11 +96,17 @@ tidy(usa_mds)
 tidy(usa_mds, matrix = "x")
 # return the eigenvalues for the principal coordinates, with summary statistics
 tidy(usa_mds, matrix = "eig")
+
+\dontshow{if (rlang::is_installed("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+library(ggplot2)
+
 # reorient to conventional compass
 tidy(usa_mds) \%>\%
   ggplot(aes(x = -PCo1, y = -PCo2)) +
   geom_text(aes(label = point), size = 3) +
   ggtitle("MDS biplot of distances between U.S. cities")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[generics:tidy]{generics::tidy()}}, \code{\link[stats:cmdscale]{stats::cmdscale()}}
